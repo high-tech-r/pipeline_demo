@@ -1,0 +1,5 @@
+lr: 0.02
+
+train:
+  epochs: 250
+  test_size: 0.2
