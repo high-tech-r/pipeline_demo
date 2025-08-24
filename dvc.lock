@@ -13,7 +13,7 @@ stages:
       md5: bfbcea6fc7aa0555764f3108b8d6c8ac
       size: 11116
   train:
-    cmd: python src/train.py --learning_rate 0.0001 --num_epochs 100 --test_size
+    cmd: python src/train.py --learning_rate 0.1 --num_epochs 100 --test_size 
       0.2
     deps:
     - path: res/processed_data.csv
@@ -27,17 +27,17 @@ stages:
     outs:
     - path: metrics/iris_metrics.json
       hash: md5
-      md5: da37c4ec5e34cad656c6d3fd9493fefb
-      size: 145
+      md5: 1a18865ebe82ce993ccb7673792ab534
+      size: 143
     - path: models/iris_model.pkl
       hash: md5
-      md5: b11133b8bcb48461cd25d2440a3abb13
+      md5: c3fd83ae7f785c1c5a3ab8ad828ed388
       size: 2280
     - path: plot/epoch_metrics.csv
       hash: md5
-      md5: e331ce02eb02a3795c368e6a44a6e3dd
-      size: 7958
+      md5: 7450a46c6e450bca555b481b4adff88c
+      size: 8258
     - path: plot/learning_curves.png
       hash: md5
-      md5: 0ac9c9f492406462862b31d2b148e53a
-      size: 56215
+      md5: 1819086e67e187ace0253205deb791a3
+      size: 55499
