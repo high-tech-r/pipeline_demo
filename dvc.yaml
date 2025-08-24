@@ -6,7 +6,7 @@ stages:
     outs:
     - res/processed_data.csv
   train:
-    cmd: python src/train.py --learning_rate 0.01 --num_epochs 100 --test_size 
+    cmd: python src/train.py --learning_rate 0.0001 --num_epochs 100 --test_size 
       0.2
     deps:
     - res/processed_data.csv
