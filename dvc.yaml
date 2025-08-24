@@ -2,20 +2,26 @@ stages:
   preprocess_data:
     cmd: python src/preprocess.py data/raw_data.csv res/processed_data.csv
     deps:
-    - data/raw_data.csv
+      - data/raw_data.csv
     outs:
-    - res/processed_data.csv
+      - res/processed_data.csv
+
   train:
-    cmd: python src/train.py --learning_rate 0.1 --num_epochs 100 --test_size 
-      0.2
+    cmd: python src/train.py --learning_rate ${lr} --num_epochs ${train.epochs} --test_size ${train.test_size}
     deps:
-    - res/processed_data.csv
-    - src/train.py
+      - res/processed_data.csv
+      - src/train.py
     outs:
-    - models/iris_model.pkl
+      - models/iris_model.pkl
     metrics:
-    - metrics/iris_metrics.json:
-        cache: false
+      - metrics/iris_metrics.json:
+          cache: false
     plots:
-    - plot/epoch_metrics.csv
-    - plot/learning_curves.png
+      - plot/epoch_metrics.csv:
+          cache: false
+      - plot/learning_curves.png:
+          cache: false
+    params:
+      - lr
+      - train.epochs
+      - train.test_size
