@@ -1,0 +1,7 @@
+stages:
+  printer:
+    cmd: ./write.sh
+    deps:
+    - write.sh
+    outs:
+    - pages
