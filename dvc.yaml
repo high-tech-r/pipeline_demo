@@ -1,7 +1,21 @@
 stages:
-  printer:
-    cmd: ./write.sh
+  preprocess_data:
+    cmd: python src/preprocess.py data/raw_data.csv res/processed_data.csv
     deps:
-    - write.sh
+    - data/raw_data.csv
     outs:
-    - pages
+    - res/processed_data.csv
+  train:
+    cmd: python src/train.py --learning_rate 0.01 --num_epochs 100 --test_size 
+      0.2
+    deps:
+    - res/processed_data.csv
+    - src/train.py
+    outs:
+    - models/iris_model.pkl
+    metrics:
+    - metrics/iris_metrics.json:
+        cache: false
+    plots:
+    - plot/epoch_metrics.csv
+    - plot/learning_curves.png

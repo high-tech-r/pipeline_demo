@@ -1,0 +1,43 @@
+schema: '2.0'
+stages:
+  preprocess_data:
+    cmd: python src/preprocess.py data/raw_data.csv res/processed_data.csv
+    deps:
+    - path: data/raw_data.csv
+      hash: md5
+      md5: 21d441a28bce4417276097df955afc50
+      size: 2928
+    outs:
+    - path: res/processed_data.csv
+      hash: md5
+      md5: bfbcea6fc7aa0555764f3108b8d6c8ac
+      size: 11116
+  train:
+    cmd: python src/train.py --learning_rate 0.01 --num_epochs 100 --test_size 
+      0.2
+    deps:
+    - path: res/processed_data.csv
+      hash: md5
+      md5: bfbcea6fc7aa0555764f3108b8d6c8ac
+      size: 11116
+    - path: src/train.py
+      hash: md5
+      md5: 0d7b1e559f4b8a8bf1f678264e72d512
+      size: 5719
+    outs:
+    - path: metrics/iris_metrics.json
+      hash: md5
+      md5: a2217e7e7048cada224d41d7d54fe73f
+      size: 143
+    - path: models/iris_model.pkl
+      hash: md5
+      md5: 0e81ac14d7a4a974704169363860acf6
+      size: 2280
+    - path: plot/epoch_metrics.csv
+      hash: md5
+      md5: 358ef4a893b0359d15a261001d5567cd
+      size: 7537
+    - path: plot/learning_curves.png
+      hash: md5
+      md5: f64307cf8e986de1e0ba9dd88818e0ea
+      size: 50857
